@@ -1,0 +1,33 @@
+services:
+  hotdog-dataserver:
+    build:
+      context: ./docker/dataserver
+    container_name: 'hotdog-dataserver'
+    command: '--default-authentication-plugin=mysql_native_password'
+    volumes:
+      - ./var/data/docker/mysql:/var/lib/mysql
+      - ./var/log/docker/mysql:/var/log/mysql
+    restart: "always"
+    environment:
+      - MYSQL_ROOT_PASSWORD=toor
+      - MYSQL_DATABASE=hotdog_db
+      - MYSQL_USER=hotdog_user
+      - MYSQL_PASSWORD=hotdog_pass
+    ports:
+      - "3306:3306"
+
+  hotdog-webserver:
+    build:
+      context: ./docker/webserver-hotdog
+    container_name: 'hotdog-webserver'
+    user: "1001:1001"
+    volumes:
+      - ./project:/var/www/html/
+      - ./var/log/docker/webserver:/var/www/logs
+    ports:
+      - "8080:80"
+      - "443:443"
+    links:
+      - hotdog-dataserver
+    restart: "always"
+
