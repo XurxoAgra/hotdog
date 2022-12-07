@@ -18,7 +18,7 @@ services:
 
   hotdog-webserver:
     build:
-      context: ./docker/webserver-hotdog
+      context: ./docker/webserver
     container_name: 'hotdog-webserver'
     user: "1001:1001"
     volumes:

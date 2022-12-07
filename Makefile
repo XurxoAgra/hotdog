@@ -1,6 +1,6 @@
 current-dir := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 SHELL = /bin/bash
-docker-container = wordpress-webserver
+docker-container = hotdog-webserver
 
 CURRENT_UID := $(shell id -u)
 export CURRENT_UID
@@ -25,6 +25,7 @@ install: ## Install dependencies
 
 bash: ## Start bash console inside the container
 ##	docker exec --user=root  -it $(docker-container) /bin/bash
+## docker exec --user=1001 -it hotdog-webserver /bin/bash
 	docker exec --user=${CURRENT_UID} -it $(docker-container) /bin/bash
 
 
