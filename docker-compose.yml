@@ -22,7 +22,7 @@ services:
     container_name: 'hotdog-webserver'
     user: "1001:1001"
     volumes:
-      - ./project:/var/www/html/
+      - ./:/var/www/html/
       - ./var/log/docker/webserver:/var/www/logs
     ports:
       - "8080:80"
