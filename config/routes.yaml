@@ -1,5 +1,9 @@
-controllers:
-    resource:
-        path: ../src/Controller/
-        namespace: App\Controller
-    type: attribute
+users_get_collection:
+    path: /api/users
+    controller: App\User\Api\Controllers\GetUserController
+    methods: GET
+
+user_post:
+    path: /api/users
+    controller: App\User\Api\Controllers\CreateUserController
+    methods: POST
